@@ -1,12 +1,13 @@
 #pragma once
 
 #include "byte_stream.hh"
-
+#include <deque>
 #include <string>
 
 class Reassembler
 {
 public:
+  Reassembler();
   /*
    * Insert a new substring to be reassembled into a ByteStream.
    *   `first_index`: the index of the first byte of the substring
@@ -31,4 +32,12 @@ public:
 
   // How many bytes are stored in the Reassembler itself?
   uint64_t bytes_pending() const;
+
+protected:
+  std::deque<char> data_deque;
+  std::deque<bool> flag_deque;
+  bool init_info;
+  uint64_t unassemble_idx;
+  uint64_t unacceptable_idx;
+  uint64_t package_end;
 };
