@@ -3,11 +3,37 @@
 #include "byte_stream.hh"
 #include "tcp_receiver_message.hh"
 #include "tcp_sender_message.hh"
+#include<deque>
+
+class TinyTimer{
+public:
+    TinyTimer(const uint64_t init_time);
+    void start();
+    void stop();
+    void reset_time();
+    void double_RTO(const uint64_t retransmissions_num);
+    bool is_timeout(const size_t ms_since_last_tick);
+    bool get_state();
+private:
+    uint64_t initial_time;
+    int64_t retransmission_time;
+    bool start_state;
+};
 
 class TCPSender
 {
   Wrap32 isn_;
   uint64_t initial_RTO_ms_;
+  bool is_set_syn;
+  bool is_set_fin;
+  uint64_t outstanding_bytes;
+  uint64_t retransmissions_num;
+  uint64_t next_seqno;
+  uint64_t origin_win_size;
+  uint16_t win_size;
+  std::deque<TCPSenderMessage> outstanding_message;
+  std::deque<TCPSenderMessage> prepared_message;
+  TinyTimer timer;
 
 public:
   /* Construct TCP sender with given default Retransmission Timeout and possible ISN */
