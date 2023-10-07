@@ -1,3 +1,10 @@
+Lab2
+==============================
+
+1、在src/wrapping_intergers.hh和src/wrapping_intergers.cc中实现相对序列号和绝对序列号转换。
+
+2、在src/tcp_receiver.hh和src/tcp_receiver.hh中实现一个tcp消息接收器。
+
 Stanford CS 144 Networking Lab
 ==============================
 
