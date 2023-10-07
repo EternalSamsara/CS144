@@ -1,3 +1,8 @@
+Lab1
+==============================
+
+在src/reassembler.cc和src/reassembler.hh中实现一个整流器，将无序的字节数据整理为有序并推入可靠字节流中。
+
 Stanford CS 144 Networking Lab
 ==============================
 
